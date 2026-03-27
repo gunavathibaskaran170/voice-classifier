@@ -98,7 +98,7 @@ def predict_from_audio(audio: np.ndarray, sr: int) -> dict:
 
     pred = int(model.predict(feat_scaled)[0])
     prob = model.predict_proba(feat_scaled)[0]
-    confidence = float(np.max(prob))
+    confidence = float(np.max(prob))    
     confidence_pct = round(confidence * 100, 2)
 
     label = "Machine Voice" if pred == 1 else "Human Voice"
