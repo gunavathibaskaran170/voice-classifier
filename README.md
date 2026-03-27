@@ -31,18 +31,19 @@ Voice Authenticity Detector is a full-stack machine learning web application tha
 
 ## 🧠 ML Model
 
-| Property | Details |
-|---|---|
-| Model | XGBoost + RandomForest Ensemble (Soft Voting) |
-| Features | 366 dimensions |
-| Train/Test Split | 77/23 |
-| Accuracy | ~97% |
-| Precision | ~97% |
-| Recall | ~97% |
-| F1 Score | ~97% |
-| Validation | Cross-Validation (5-fold), ±0.81% |
+| Property         | Details                                       |
+| ---------------- | --------------------------------------------- |
+| Model            | XGBoost + RandomForest Ensemble (Soft Voting) |
+| Features         | 366 dimensions                                |
+| Train/Test Split | 77/23                                         |
+| Accuracy         | ~97%                                          |
+| Precision        | ~97%                                          |
+| Recall           | ~97%                                          |
+| F1 Score         | ~97%                                          |
+| Validation       | Cross-Validation (5-fold), ±0.81%             |
 
 ### Feature Pipeline
+
 - MFCC coefficients (mean + std) × 800
 - Spectral Centroid/Bandwidth/Rolloff × 300
 - Chroma (13 bins) × mean/std × 26D
@@ -149,10 +150,10 @@ Navigate to `http://localhost:3000` in your browser.
 
 ## 🔌 API Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/health` | Health check |
-| `GET` | `/metrics` | Model performance metrics |
+| Method | Endpoint          | Description                          |
+| ------ | ----------------- | ------------------------------------ |
+| `GET`  | `/health`         | Health check                         |
+| `GET`  | `/metrics`        | Model performance metrics            |
 | `POST` | `/predict/upload` | Upload audio file for classification |
 
 ### Example Response — `/predict/upload`
@@ -172,26 +173,28 @@ Navigate to `http://localhost:3000` in your browser.
 ## 🖥️ Tech Stack
 
 ### Frontend
-| Technology | Purpose |
-|---|---|
-| React 18 | UI framework |
-| Vite 5 | Build tool & dev server |
-| Tailwind CSS 3 | Utility-first styling |
-| Framer Motion | Animations |
-| Recharts | Radar/performance charts |
-| Axios | HTTP client |
-| Lucide React | Icons |
+
+| Technology     | Purpose                  |
+| -------------- | ------------------------ |
+| React 18       | UI framework             |
+| Vite 5         | Build tool & dev server  |
+| Tailwind CSS 3 | Utility-first styling    |
+| Framer Motion  | Animations               |
+| Recharts       | Radar/performance charts |
+| Axios          | HTTP client              |
+| Lucide React   | Icons                    |
 
 ### Backend
-| Technology | Purpose |
-|---|---|
-| FastAPI | REST API framework |
-| Uvicorn | ASGI server |
-| XGBoost | Gradient boosting classifier |
+
+| Technology   | Purpose                       |
+| ------------ | ----------------------------- |
+| FastAPI      | REST API framework            |
+| Uvicorn      | ASGI server                   |
+| XGBoost      | Gradient boosting classifier  |
 | Scikit-learn | Random Forest + preprocessing |
-| Librosa | Audio feature extraction |
-| Joblib | Model serialization |
-| NumPy | Numerical computing |
+| Librosa      | Audio feature extraction      |
+| Joblib       | Model serialization           |
+| NumPy        | Numerical computing           |
 
 ---
 
@@ -243,5 +246,5 @@ This project is licensed under the [ISC License](LICENSE).
 
 ## 👩‍💻 Author
 
-**Gunavathi**  
+**Team AlgoNexus**  
 Built with ❤️ using React + FastAPI + XGBoost
