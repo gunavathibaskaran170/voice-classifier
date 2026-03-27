@@ -1,7 +1,6 @@
 import numpy as np
 import librosa
 
-
 def extract_features(file_path=None, audio_data=None, sr=22050):
     """
     Extract a rich feature vector from an audio file or numpy array.
