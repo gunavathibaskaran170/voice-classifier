@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  body {
+    background: #050510;
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0a1a; }
+  ::-webkit-scrollbar-thumb { background: #00f0ff44; border-radius: 3px; }
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.25rem;
+  }
+
+  .glass-strong {
+    background: rgba(0, 240, 255, 0.04);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    border-radius: 1.25rem;
+  }
+
+  .neon-text {
+    color: #00f0ff;
+    text-shadow: 0 0 10px #00f0ff80;
+  }
+
+  .neon-border {
+    border: 1px solid #00f0ff;
+    box-shadow: 0 0 15px #00f0ff30, inset 0 0 15px #00f0ff10;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300;
+    background: linear-gradient(135deg, #00f0ff22, #bf00ff22);
+    border: 1px solid #00f0ff55;
+    color: #00f0ff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #00f0ff, #bf00ff);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .btn-primary:hover::before { opacity: 0.15; }
+  .btn-primary:hover {
+    box-shadow: 0 0 25px #00f0ff40;
+    transform: translateY(-2px);
+    border-color: #00f0ff;
+  }
+
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-record {
+    @apply px-8 py-4 rounded-2xl font-bold text-base transition-all duration-300;
+    background: linear-gradient(135deg, #ff2d5522, #bf00ff22);
+    border: 1px solid #ff2d5555;
+    color: #ff2d55;
+  }
+
+  .btn-record:hover {
+    box-shadow: 0 0 30px #ff2d5540;
+    transform: translateY(-2px);
+    border-color: #ff2d55;
+  }
+
+  .btn-record.recording {
+    animation: record-pulse 1s ease-in-out infinite;
+    border-color: #ff2d55;
+    box-shadow: 0 0 30px #ff2d5560;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* Particle canvas (behind everything) */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Card flip animation */
+.flip-card { perspective: 1000px; }
+.flip-card-inner {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+}
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-card-back { transform: rotateY(180deg); position: absolute; inset: 0; }
+
+@keyframes record-pulse {
+  0%, 100% { box-shadow: 0 0 20px #ff2d5540; }
+  50% { box-shadow: 0 0 40px #ff2d5580, 0 0 60px #ff2d5530; }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-appear {
+  animation: count-up 0.5s ease-out forwards;
+}
+
+/* Spectrogram canvas */
+.spectrogram-canvas {
+  image-rendering: pixelated;
+  border-radius: 8px;
+}
+
+/* Waveform bars */
+.wave-bar {
+  animation: wave-anim var(--duration, 1s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes wave-anim {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+/* Tab indicator */
+.tab-active {
+  position: relative;
+}
+.tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00f0ff, #bf00ff);
+  border-radius: 1px;
+}
+
+/* Confidence tier colors */
+.tier-high { color: #00ff88; border-color: #00ff8844; }
+.tier-review { color: #ffb800; border-color: #ffb80044; }
+.tier-uncertain { color: #ff2d55; border-color: #ff2d5544; }
+
+.tier-high-bg { background: rgba(0, 255, 136, 0.08); }
+.tier-review-bg { background: rgba(255, 184, 0, 0.08); }
+.tier-uncertain-bg { background: rgba(255, 45, 85, 0.08); }

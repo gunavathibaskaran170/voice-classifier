@@ -1,0 +1,26 @@
+{
+  "accuracy": 85.0,
+  "precision": 80.0,
+  "recall": 100.0,
+  "f1": 88.89,
+  "confusion_matrix": [
+    [
+      5,
+      3
+    ],
+    [
+      0,
+      12
+    ]
+  ],
+  "cv_mean": 78.36,
+  "cv_std": 0.81,
+  "train_samples": 77,
+  "test_samples": 20,
+  "dataset": {
+    "human": 39,
+    "machine": 58
+  },
+  "feature_count": 396,
+  "model": "XGBoost + RandomForest Ensemble (Soft Voting)"
+}
